@@ -87,7 +87,7 @@ environments:
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
             username: root
             password: ''
-            url: jdbc:mariadb://localhost:3306/the_program
+            url: jdbc:mariadb://localhost/the_program
     test:
         dataSource:
             dbCreate: update
