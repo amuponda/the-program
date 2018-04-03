@@ -1,15 +1,21 @@
 package the.program
 
-import java.sql.Time
-import java.time.Duration
+import grails.compiler.GrailsCompileStatic
 
+import java.sql.Time
+
+@GrailsCompileStatic
 class Activity {
     String name
-    String metadata
-    Duration duration
+    String metadata //used to reconstruct the repetition data
+    Time duration
     Time time
     Repetition repetition
-    Boolean highPriority = false
+    boolean isHighPriority
+
+    static mapping = {
+        isHighPriority defaultValue: false
+    }
 
     static constraints = {
         name blank: false, nullable: false
@@ -17,5 +23,6 @@ class Activity {
         duration nullable: false
         time nullable: false
         repetition nullable: false
+        isHighPriority nullable: false
     }
 }
