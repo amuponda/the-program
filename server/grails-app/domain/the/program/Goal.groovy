@@ -29,8 +29,8 @@ class Goal {
     static hasMany = [milestones: Milestone, activities: Activity]
 
     static mapping = {
-        milestones joinTable: [ name: "goal_milestones", key: "goal_id"]
-        activities joinTable: [ name: "goal_activities", key: "goal_id"]
+        milestones column: "goal_id", joinTable: false
+        activities joinTable: [name: "goal_activities", key: "goal_id"]
     }
 
     static constraints = {
