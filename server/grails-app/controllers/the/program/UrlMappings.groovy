@@ -3,8 +3,8 @@ package the.program
 class UrlMappings {
 
     static mappings = {
-        "/goals"(resources: "goal")
-        "/activities"(resources: "activity")
+        "/api/goals"(resources: "goal")
+        "/api/activities"(resources: "activity")
 
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')

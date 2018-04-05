@@ -18,7 +18,7 @@ class ActivityControllerSpec extends HibernateSpec implements ControllerUnitTest
     }
 
     def setup() {
-        new Activity(name: "Test", metadata: "{}", repetition: Repetition.DAILY, time: new Time(System.currentTimeMillis()), duration: Duration.ofHours(1l)).save()
+        new Activity(name: "Test", metadata: "{}", repetition: Repetition.DAILY, time: new Time(System.currentTimeMillis()), duration: new Time(System.currentTimeMillis())).save()
     }
 
     def cleanup() {
