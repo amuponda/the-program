@@ -13,4 +13,8 @@ class GoalController extends RestfulController {
     GoalController() {
         super(Goal)
     }
+
+    protected Goal saveResource(Goal resource) {
+        resource.save flush: true
+    }
 }

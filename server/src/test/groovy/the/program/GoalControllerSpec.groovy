@@ -4,7 +4,6 @@ import grails.plugin.json.view.mvc.JsonViewResolver
 import grails.test.hibernate.HibernateSpec
 import grails.testing.web.controllers.ControllerUnitTest
 import groovy.json.JsonBuilder
-import spock.lang.Specification
 
 class GoalControllerSpec extends HibernateSpec implements ControllerUnitTest<GoalController> {
 
@@ -13,6 +12,7 @@ class GoalControllerSpec extends HibernateSpec implements ControllerUnitTest<Goa
     }
 
     def setup() {
+        User user = new User(passwordExpired: false, username: "test@theprogram.com.au", accountLocked: false, password: "test", accountExpired: false, enabled: true)
         Milestone milestone = new Milestone(name: "Test", targetValue: 150, targetDate: new Date() + 7)
         Goal goal = new Goal()
         goal.with {
@@ -24,7 +24,8 @@ class GoalControllerSpec extends HibernateSpec implements ControllerUnitTest<Goa
             targetDate = startDate + 14
         }
         goal.addToMilestones(milestone)
-        goal.save()
+        user.addToGoals(goal)
+        user.save(flush: true)
     }
 
     def cleanup() {
@@ -53,6 +54,7 @@ class GoalControllerSpec extends HibernateSpec implements ControllerUnitTest<Goa
 
     void "save a new goal"() {
         setup:
+        controller.metaClass.saveResource =  { resource -> return Goal.get(3) }
         Map milestone = [name: "Test", targetValue: 150, targetDate: new Date() + 7]
         Map goal = [name: "Test", category: Category.MONEY_FINANCE, targetValue: 300, unit: Unit.DOLLAR, startDate: new Date().format("dd/MM/yyyy"), targetDate: (new Date() + 14).format("dd/MM/yyyy")]
         //goal.milestones = [milestone]

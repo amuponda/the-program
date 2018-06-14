@@ -28,6 +28,8 @@ class Goal {
 
     static hasMany = [milestones: Milestone, activities: Activity]
 
+    static belongsTo = User
+
     static mapping = {
         milestones column: "goal_id", joinTable: false
         activities joinTable: [name: "goal_activities", key: "goal_id"]

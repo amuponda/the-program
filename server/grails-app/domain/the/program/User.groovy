@@ -18,16 +18,20 @@ class User implements Serializable {
     boolean accountLocked
     boolean passwordExpired
 
+    static hasMany = [goals: Goal, activities: Activity]
+
     Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
     }
 
     static constraints = {
         password nullable: false, blank: false, password: true
-        username nullable: false, blank: false, unique: true
+        username nullable: false, blank: false, email: true, unique: true
     }
 
     static mapping = {
 	    password column: '`password`'
+        goals column: "user_id", joinTable: false
+        activities column: "user_id", joinTable: false
     }
 }
