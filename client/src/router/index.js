@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
-// import Home from '@/components/Home'
+import Dashboard from '@/components/Dashboard'
 // import Goals from '@/components/Goals'
 // import GoalList from '@/components/GoalList'
 // import Goal from '@/components/Goal'
@@ -14,13 +14,13 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
-    }
-    /*
+    },
     {
       path: '/',
-      name: 'home',
-      component: Home
-    },
+      name: 'dashboard',
+      component: Dashboard
+    }
+    /*
     {
       path: '/goals',
       name: 'goals',
