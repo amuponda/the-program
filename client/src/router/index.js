@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Dashboard from '@/components/Dashboard'
-// import Goals from '@/components/Goals'
+import AppNav from '@/components/AppNav'
 // import GoalList from '@/components/GoalList'
 // import Goal from '@/components/Goal'
 
@@ -17,8 +17,19 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'dashboard',
-      component: Dashboard
+      name: 'app',
+      component: AppNav,
+      children: [
+        {
+          path: '',
+          component: Dashboard
+        },
+        {
+          path: 'dashboard',
+          name: 'dashboard',
+          component: Dashboard
+        }
+      ]
     }
     /*
     {
