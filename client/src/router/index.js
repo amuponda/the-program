@@ -17,7 +17,6 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'app',
       component: AppNav,
       children: [
         {

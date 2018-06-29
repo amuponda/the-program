@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '@/router'
 
 const tokenPrefix = 'tp_token'
 
@@ -11,9 +12,8 @@ const http = axios.create({
 
 // interceptors
 http.interceptors.request.use(config => {
-  console.log(JSON.stringify(config.url))
   if (config.url !== '/api/login') {
-    config.headers.Authorization = 'Bearer' + sessionStorage.getItem(tokenPrefix)
+    config.headers.Authorization = 'Bearer ' + sessionStorage.getItem(tokenPrefix)
   }
   return config
 }, error => {
@@ -21,11 +21,12 @@ http.interceptors.request.use(config => {
 })
 
 http.interceptors.response.use(response => {
-  if (response.status === 401) {
-    sessionStorage.removeItem(tokenPrefix)
-  }
   return response
 }, error => {
+  if (error.response.status === 401) {
+    sessionStorage.removeItem(tokenPrefix)
+    router.push({ name: 'login', params: { originalUrl: router.currentRoute.path } })
+  }
   return Promise.reject(error)
 })
 

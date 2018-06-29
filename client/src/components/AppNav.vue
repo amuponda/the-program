@@ -13,7 +13,10 @@
 
 <script>
 export default {
-  name: 'app-nav'
+  name: 'app-nav',
+  created () {
+    this.$store.dispatch('fetchGoals')
+  }
 }
 </script>
 

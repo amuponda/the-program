@@ -1,10 +1,10 @@
 /* eslint-disable */
 import http from '@/http'
 
-const loginUrl = '/api/login'
+const LOGIN_URL = '/api/login'
 
 export default {
   login: (email, password) => {
-    return http.post(loginUrl, { username: email, password: password })
+    return http.post(LOGIN_URL, { username: email, password: password })
   }
 }
