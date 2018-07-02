@@ -12,11 +12,23 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'app-nav',
   created () {
-    this.$store.dispatch('fetchGoals')
-  }
+    this.$store.dispatch('fetchUser').then(() => {
+      if (this.user) {
+        this.$store.dispatch('fetchGoals')
+      }
+    })
+      .catch(error => {
+        console.log(JSON.stringify(error))
+      })
+  },
+  computed: mapGetters({
+    user: 'getUser'
+  })
 }
 </script>
 

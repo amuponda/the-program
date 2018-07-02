@@ -1,12 +1,21 @@
 <template>
   <div class="container">
-    <h1>I am home! </h1>
+    <nav>
+      <a>Filter</a>
+      <a>New Tracker</a>
+    </nav>
+    <goal-list></goal-list>
   </div>
 </template>
 
 <script>
+import GoalList from './GoalList'
+
 export default {
-  name: 'dashboard'
+  name: 'dashboard',
+  components: {
+    GoalList
+  }
 }
 </script>
 

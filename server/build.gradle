@@ -48,6 +48,7 @@ dependencies {
     compile "org.hibernate:hibernate-core:5.1.5.Final"
     compile "org.grails.plugins:views-json"
     compile "org.grails.plugins:views-json-templates"
+    compile "org.grails.plugins:spring-security-rest:2.0.0.RC1"
     console "org.grails:grails-console"
     profile "org.grails.profiles:vue"
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
@@ -57,7 +58,8 @@ dependencies {
     testCompile "org.grails:grails-gorm-testing-support"
     testCompile "org.grails:grails-datastore-rest-client"
     testCompile "org.grails:grails-web-testing-support"
-    compile "org.grails.plugins:spring-security-rest:2.0.0.RC1"
+    testCompile "cglib:cglib-nodep:3.2.0"
+
 }
 
 bootRun {
