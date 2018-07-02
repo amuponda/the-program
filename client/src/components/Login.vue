@@ -16,13 +16,22 @@
 </template>
 
 <script>
-
 import userService from '@/service/UserService'
-
-const tokenPrefix = 'tp_token'
 
 export default {
   name: 'login',
+  beforeRouteEnter: (to, from, next) => {
+    if (userService.getToken()) {
+      userService.validate()
+        .then(() => {
+          return next({ path: '/' })
+        })
+        .catch(() => {
+          return next()
+        })
+    }
+    return next()
+  },
   data () {
     return {
       email: '',
@@ -38,7 +47,7 @@ export default {
         if (result) {
           userService.login(this.email, this.password)
             .then(response => {
-              sessionStorage.setItem(tokenPrefix, response.data.access_token)
+              userService.setToken(response.data.access_token)
               let originalUrl = this.$route.params.originalUrl
               if (originalUrl) {
                 // go back to page they tried to access
