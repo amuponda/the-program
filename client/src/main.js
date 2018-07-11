@@ -7,8 +7,7 @@ import store from './vuex/store'
 import * as uiv from 'uiv'
 import VeeValidate from 'vee-validate'
 import './assets/css/bootstrap.css'
-import './assets/css/grails.css'
-import './assets/css/main.css'
+import './assets/css/mdb.css'
 
 Vue.config.productionTip = false
 

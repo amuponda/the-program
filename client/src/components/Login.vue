@@ -1,24 +1,58 @@
 <template>
-  <form @submit.prevent="login">
-    <span v-show="errorMessage">{{errorMessage}}</span>
-    <div>
-      <label>Email</label>
-      <input v-validate="'required|email'" name="email" v-model="email" />
-      <span v-show="errors.has('email') && fields.email.touched">{{ errors.first('email') }}</span>
-    </div>
-    <div>
-      <label>Password</label>
-      <input v-validate="'required'" name="password" v-model="password" type="password" />
-      <span v-show="errors.has('password')">{{ errors.first('password') }}</span>
-    </div>
-    <button type="submit">Log in</button>
-  </form>
+  <container>
+    <row>
+      <column>
+        <card>
+          <card-body>
+            <form @submit.prevent="login">
+              <p class="h4 text-center mb-4">Sign in</p>
+
+              <span v-show="errorMessage">{{errorMessage}}</span>
+
+              <div class="grey-text">
+                <md-input
+                  v-validate="'required|email'"
+                  name="email"
+                  label="Email"
+                  icon="envelope"
+                  type="text"
+                  :value="email"
+                  @input="email = $event">
+                  <p v-show="errors.has('email')" class="text-danger"><small>{{ errors.first('email') }}</small></p>
+                </md-input>
+              </div>
+
+              <div class="grey-text">
+                <md-input
+                  v-validate="'required'"
+                  name="password"
+                  label="Password"
+                  icon="lock"
+                  type="password"
+                  :value="password"
+                  @input="password = $event">
+                  <p v-show="errors.has('password')" class="text-danger"><small>{{ errors.first('password') }}</small></p>
+                </md-input>
+              </div>
+
+              <div class="text-center">
+                <btn color="primary" type="submit">Log in</btn>
+              </div>
+
+            </form>
+          </card-body>
+        </card>
+      </column>
+    </row>
+  </container>
 </template>
 
 <script>
 import userService from '@/service/UserService'
+import { Container, Card, CardBody, Row, Column, MdInput, Btn } from 'mdbvue'
 
 export default {
+  components: { Container, Card, CardBody, Row, Column, MdInput, Btn },
   name: 'login',
   beforeRouteEnter: (to, from, next) => {
     if (userService.getToken()) {
@@ -71,5 +105,7 @@ export default {
 </script>
 
 <style scoped>
-
+ .row {
+   margin-top: 10%;
+ }
 </style>
